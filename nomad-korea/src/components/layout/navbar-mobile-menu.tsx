@@ -9,8 +9,13 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { mainNav } from "@/data/navigation";
+import { logout } from "@/app/login/actions";
 
-export function NavbarMobileMenu() {
+interface NavbarMobileMenuProps {
+  user: { email: string } | null;
+}
+
+export function NavbarMobileMenu({ user }: NavbarMobileMenuProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -44,13 +49,45 @@ export function NavbarMobileMenu() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="#membership"
-            onClick={() => setOpen(false)}
-            className="mt-4 rounded-lg bg-nk-accent px-4 py-3 text-center text-sm font-medium text-white"
-          >
-            멤버십 가입
-          </Link>
+
+          {user ? (
+            <>
+              <span className="mt-4 text-sm text-dim">{user.email}</span>
+              <Link
+                href="/profile"
+                onClick={() => setOpen(false)}
+                className="rounded-lg border border-border px-4 py-3 text-center text-sm font-medium text-dim transition-colors hover:text-foreground"
+              >
+                내 프로필
+              </Link>
+              <form action={logout}>
+                <button
+                  type="submit"
+                  onClick={() => setOpen(false)}
+                  className="w-full rounded-lg border border-border px-4 py-3 text-center text-sm font-medium text-dim transition-colors hover:text-foreground"
+                >
+                  로그아웃
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="mt-4 rounded-lg border border-border px-4 py-3 text-center text-sm font-medium text-dim transition-colors hover:text-foreground"
+              >
+                로그인
+              </Link>
+              <Link
+                href="/register"
+                onClick={() => setOpen(false)}
+                className="rounded-lg bg-nk-accent px-4 py-3 text-center text-sm font-medium text-white"
+              >
+                회원가입
+              </Link>
+            </>
+          )}
         </nav>
       </SheetContent>
     </Sheet>
