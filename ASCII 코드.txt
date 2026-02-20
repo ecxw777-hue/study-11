@@ -1,0 +1,7 @@
+도시카드 UI ASCII 코드
+
+file:///C:/Users/Jongsoo/Downloads/nomad-korea-ascii-cards.html
+
+홈페이지 UI를 ASCII 코드
+
+file:///C:/Users/Jongsoo/Downloads/nomad-korea-homepage-ascii.html
