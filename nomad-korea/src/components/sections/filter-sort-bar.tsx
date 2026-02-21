@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -10,16 +9,28 @@ import {
 } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-export function FilterSortBar() {
-  const [region, setRegion] = useState("all");
-  const [sort, setSort] = useState("score");
-  const [view, setView] = useState("grid");
+interface FilterSortBarProps {
+  region: string;
+  sort: string;
+  view: string;
+  onRegionChange: (value: string) => void;
+  onSortChange: (value: string) => void;
+  onViewChange: (value: string) => void;
+}
 
+export function FilterSortBar({
+  region,
+  sort,
+  view,
+  onRegionChange,
+  onSortChange,
+  onViewChange,
+}: FilterSortBarProps) {
   return (
     <section className="border-b border-border bg-background">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-4 px-4 py-4">
         {/* Region filter */}
-        <Select value={region} onValueChange={setRegion}>
+        <Select value={region} onValueChange={onRegionChange}>
           <SelectTrigger className="w-[140px] border-border bg-surface">
             <SelectValue placeholder="지역" />
           </SelectTrigger>
@@ -35,7 +46,7 @@ export function FilterSortBar() {
         </Select>
 
         {/* Sort */}
-        <Select value={sort} onValueChange={setSort}>
+        <Select value={sort} onValueChange={onSortChange}>
           <SelectTrigger className="w-[160px] border-border bg-surface">
             <SelectValue placeholder="정렬" />
           </SelectTrigger>
@@ -56,7 +67,7 @@ export function FilterSortBar() {
         <ToggleGroup
           type="single"
           value={view}
-          onValueChange={(v) => v && setView(v)}
+          onValueChange={(v) => v && onViewChange(v)}
           className="border border-border"
         >
           <ToggleGroupItem

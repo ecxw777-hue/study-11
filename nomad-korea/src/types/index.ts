@@ -1,3 +1,21 @@
+export interface CoworkingSpace {
+  id: string;
+  name: string;
+  address: string;
+  pricePerDay: number;
+  wifi: number;
+  features: string[];
+}
+
+export interface RecommendedCafe {
+  id: string;
+  name: string;
+  address: string;
+  wifi: number;
+  powerOutlets: boolean;
+  vibe: string;
+}
+
 export interface City {
   id: string;
   name: string;
@@ -16,6 +34,13 @@ export interface City {
   tags: string[];
   description: string;
   region: string;
+  lat: number;
+  lng: number;
+  detailedDescription: string;
+  pros: string[];
+  cons: string[];
+  coworkingSpaces: CoworkingSpace[];
+  recommendedCafes: RecommendedCafe[];
 }
 
 export interface WeatherInfo {
@@ -87,4 +112,11 @@ export interface Testimonial {
   role: string;
   avatar: string;
   quote: string;
+}
+
+export interface Editorial {
+  id: string;
+  title: string;
+  category: string;
+  readTime: string;
 }

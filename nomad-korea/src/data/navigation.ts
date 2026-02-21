@@ -12,37 +12,37 @@ export const footerSections: FooterSection[] = [
   {
     title: "탐색",
     links: [
-      { label: "인기 도시", href: "#" },
-      { label: "한달살기", href: "#" },
-      { label: "코워킹 스페이스", href: "#" },
-      { label: "노마드 지도", href: "#" },
+      { label: "인기 도시", href: "/#cities" },
+      { label: "한달살기", href: "/#monthly-stay" },
+      { label: "코워킹 스페이스", href: "/coworking" },
+      { label: "노마드 지도", href: "/#map" },
     ],
   },
   {
     title: "커뮤니티",
     links: [
-      { label: "밋업", href: "#" },
-      { label: "포럼", href: "#" },
-      { label: "슬랙 채널", href: "#" },
-      { label: "뉴스레터", href: "#" },
+      { label: "밋업", href: "/#meetups" },
+      { label: "포럼", href: "/forum" },
+      { label: "슬랙 채널", href: "/#community" },
+      { label: "뉴스레터", href: "/#newsletter" },
     ],
   },
   {
     title: "정보",
     links: [
-      { label: "비자 가이드", href: "#" },
-      { label: "생활비 계산기", href: "#" },
-      { label: "안전 정보", href: "#" },
-      { label: "FAQ", href: "#" },
+      { label: "비자 가이드", href: "/visa-guide" },
+      { label: "생활비 계산기", href: "/cost-calculator" },
+      { label: "안전 정보", href: "/safety" },
+      { label: "FAQ", href: "/faq" },
     ],
   },
   {
     title: "회사",
     links: [
-      { label: "소개", href: "#" },
-      { label: "블로그", href: "#" },
-      { label: "제휴 문의", href: "#" },
-      { label: "이용약관", href: "#" },
+      { label: "소개", href: "/about" },
+      { label: "블로그", href: "/blog" },
+      { label: "제휴 문의", href: "/contact" },
+      { label: "이용약관", href: "/terms" },
     ],
   },
 ];
