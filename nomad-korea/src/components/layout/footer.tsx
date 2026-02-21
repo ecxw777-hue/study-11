@@ -41,15 +41,30 @@ export function Footer() {
             &copy; 2026 NomadKorea. All rights reserved.
           </p>
           <div className="flex gap-4">
-            <span className="cursor-pointer text-dim transition-colors hover:text-foreground">
+            <a
+              href="https://x.com/nomadkorea"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-dim transition-colors hover:text-foreground"
+            >
               𝕏
-            </span>
-            <span className="cursor-pointer text-dim transition-colors hover:text-foreground">
+            </a>
+            <a
+              href="https://instagram.com/nomadkorea"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-dim transition-colors hover:text-foreground"
+            >
               📷
-            </span>
-            <span className="cursor-pointer text-dim transition-colors hover:text-foreground">
+            </a>
+            <a
+              href="https://discord.gg/nomadkorea"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-dim transition-colors hover:text-foreground"
+            >
               💬
-            </span>
+            </a>
           </div>
         </div>
       </div>

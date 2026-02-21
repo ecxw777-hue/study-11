@@ -1,8 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { monthlyStays } from "@/data/monthly-stay";
 import { formatCurrency } from "@/lib/utils";
 
+const INITIAL_COUNT = 3;
+
 export function SidebarMonthlyStay() {
+  const [expanded, setExpanded] = useState(false);
+  const visible = expanded ? monthlyStays : monthlyStays.slice(0, INITIAL_COUNT);
+
   return (
     <div
       id="monthly-stay"
@@ -12,7 +20,7 @@ export function SidebarMonthlyStay() {
         🏠 인기 한달살기
       </h3>
       <div className="space-y-3">
-        {monthlyStays.map((stay) => (
+        {visible.map((stay) => (
           <div
             key={stay.id}
             className="overflow-hidden rounded-lg border border-border transition-colors hover:border-nk-accent/30"
@@ -45,6 +53,14 @@ export function SidebarMonthlyStay() {
           </div>
         ))}
       </div>
+      {monthlyStays.length > INITIAL_COUNT && (
+        <button
+          onClick={() => setExpanded((prev) => !prev)}
+          className="mt-3 text-xs text-nk-accent hover:underline"
+        >
+          {expanded ? "접기" : `더보기 (${monthlyStays.length - INITIAL_COUNT}개 더)`}
+        </button>
+      )}
     </div>
   );
 }

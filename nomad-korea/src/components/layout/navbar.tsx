@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { mainNav } from "@/data/navigation";
 import { NavbarMobileMenu } from "./navbar-mobile-menu";
+import { NavbarUserDropdown } from "./navbar-user-dropdown";
+import { createClient } from "@/lib/supabase/server";
 
-export function Navbar() {
+export async function Navbar() {
+  const supabase = await createClient();
+  const user = supabase
+    ? (await supabase.auth.getUser()).data.user
+    : null;
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
@@ -26,15 +33,27 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Link
-            href="#membership"
-            className="rounded-lg bg-nk-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
-          >
-            멤버십 가입
-          </Link>
+          {user ? (
+            <NavbarUserDropdown email={user.email ?? ""} />
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-dim transition-colors hover:text-foreground"
+              >
+                로그인
+              </Link>
+              <Link
+                href="/register"
+                className="rounded-lg bg-nk-accent px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+              >
+                회원가입
+              </Link>
+            </>
+          )}
         </div>
 
-        <NavbarMobileMenu />
+        <NavbarMobileMenu user={user ? { email: user.email ?? "" } : null} />
       </div>
     </header>
   );

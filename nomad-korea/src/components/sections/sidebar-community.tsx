@@ -1,6 +1,14 @@
+"use client";
+
+import { useState } from "react";
 import { communityPosts } from "@/data/community-feed";
 
+const INITIAL_COUNT = 3;
+
 export function SidebarCommunity() {
+  const [expanded, setExpanded] = useState(false);
+  const visible = expanded ? communityPosts : communityPosts.slice(0, INITIAL_COUNT);
+
   return (
     <div
       id="community"
@@ -10,7 +18,7 @@ export function SidebarCommunity() {
         💬 커뮤니티
       </h3>
       <div className="space-y-3">
-        {communityPosts.map((post) => (
+        {visible.map((post) => (
           <div
             key={post.id}
             className="rounded-lg p-2 transition-colors hover:bg-background"
@@ -32,6 +40,14 @@ export function SidebarCommunity() {
           </div>
         ))}
       </div>
+      {communityPosts.length > INITIAL_COUNT && (
+        <button
+          onClick={() => setExpanded((prev) => !prev)}
+          className="mt-3 text-xs text-nk-accent hover:underline"
+        >
+          {expanded ? "접기" : `더보기 (${communityPosts.length - INITIAL_COUNT}개 더)`}
+        </button>
+      )}
     </div>
   );
 }
