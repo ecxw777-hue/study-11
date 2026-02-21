@@ -4,6 +4,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { NomadScoreBar } from "@/components/shared/nomad-score-bar";
+import { SafetyBar } from "@/components/shared/safety-bar";
+import { InternetSpeedBadge } from "@/components/shared/internet-speed-badge";
+import { Pm25Badge } from "@/components/shared/pm25-badge";
+import { KtxTimeBadge } from "@/components/shared/ktx-time-badge";
+import { CityTags } from "@/components/shared/city-tags";
+import { LikeDislikeBar } from "@/components/shared/like-dislike-bar";
 import { CityCard } from "@/components/sections/city-card";
 import { CityDetailTabs } from "@/components/city-detail-tabs";
 import { cities } from "@/data/cities";
@@ -88,7 +95,7 @@ export default async function CityDetailPage({ params }: PageProps) {
         </section>
 
         <div className="mx-auto max-w-4xl space-y-10 px-4 py-10">
-          <CityDetailTabs city={city} />
+<CityDetailTabs city={city} />
 
           {/* 비슷한 도시 */}
           {similarCities.length > 0 && (
