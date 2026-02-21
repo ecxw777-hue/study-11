@@ -31,7 +31,7 @@ export function FilterSortBar({
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-4 px-4 py-4">
         {/* Region filter */}
         <Select value={region} onValueChange={onRegionChange}>
-          <SelectTrigger className="w-[140px] border-border bg-surface">
+          <SelectTrigger className="flex-1 border-border bg-surface">
             <SelectValue placeholder="지역" />
           </SelectTrigger>
           <SelectContent className="border-border bg-surface">
@@ -47,7 +47,7 @@ export function FilterSortBar({
 
         {/* Sort */}
         <Select value={sort} onValueChange={onSortChange}>
-          <SelectTrigger className="w-[160px] border-border bg-surface">
+          <SelectTrigger className="flex-1 border-border bg-surface">
             <SelectValue placeholder="정렬" />
           </SelectTrigger>
           <SelectContent className="border-border bg-surface">
@@ -60,15 +60,12 @@ export function FilterSortBar({
           </SelectContent>
         </Select>
 
-        {/* Spacer */}
-        <div className="flex-1" />
-
         {/* View toggle */}
         <ToggleGroup
           type="single"
           value={view}
           onValueChange={(v) => v && onViewChange(v)}
-          className="border border-border"
+          className="ml-auto shrink-0 border border-border"
         >
           <ToggleGroupItem
             value="grid"

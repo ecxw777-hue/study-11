@@ -10,6 +10,7 @@ import { InternetSpeedBadge } from "@/components/shared/internet-speed-badge";
 import { Pm25Badge } from "@/components/shared/pm25-badge";
 import { KtxTimeBadge } from "@/components/shared/ktx-time-badge";
 import { CityTags } from "@/components/shared/city-tags";
+import { LikeDislikeBar } from "@/components/shared/like-dislike-bar";
 import { CityCard } from "@/components/sections/city-card";
 import { cities } from "@/data/cities";
 import { formatCurrency } from "@/lib/utils";
@@ -100,6 +101,12 @@ export default async function CityDetailPage({ params }: PageProps) {
             <div className="rounded-xl border border-border bg-surface p-6 space-y-4">
               <NomadScoreBar score={city.nomadScore} />
               <SafetyBar rating={city.safetyRating} />
+              <LikeDislikeBar
+                likes={city.likes}
+                dislikes={city.dislikes}
+                interactive
+                citySlug={city.slug}
+              />
 
               <div className="flex flex-wrap gap-2">
                 <InternetSpeedBadge speed={city.internetSpeed} />
