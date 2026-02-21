@@ -11,6 +11,7 @@ import { Pm25Badge } from "@/components/shared/pm25-badge";
 import { KtxTimeBadge } from "@/components/shared/ktx-time-badge";
 import { CityTags } from "@/components/shared/city-tags";
 import { CityCard } from "@/components/sections/city-card";
+import { ShareButtons } from "@/components/shared/share-buttons";
 import { cities } from "@/data/cities";
 import { formatCurrency } from "@/lib/utils";
 
@@ -26,9 +27,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const city = cities.find((c) => c.slug === slug);
   if (!city) return {};
+
+  const title = `${city.nameKo} (${city.name}) — Nomad Korea`;
+  const url = `https://nomadkorea.com/cities/${city.slug}`;
+
   return {
-    title: `${city.nameKo} (${city.name}) — Nomad Korea`,
+    title,
     description: city.description,
+    openGraph: {
+      title,
+      description: city.description,
+      url,
+      siteName: "Nomad Korea",
+      type: "article",
+      images: [
+        {
+          url: city.image,
+          width: 1200,
+          height: 630,
+          alt: `${city.nameKo} (${city.name})`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: city.description,
+      images: [city.image],
+    },
   };
 }
 
@@ -81,14 +107,22 @@ export default async function CityDetailPage({ params }: PageProps) {
               </ol>
             </nav>
 
-            <div className="flex items-end gap-4">
-              <div>
-                <h1 className="text-3xl font-bold text-white md:text-4xl">{city.nameKo}</h1>
-                <p className="mt-1 text-lg text-white/70">{city.name}</p>
+            <div className="flex items-end justify-between gap-4">
+              <div className="flex items-end gap-4">
+                <div>
+                  <h1 className="text-3xl font-bold text-white md:text-4xl">{city.nameKo}</h1>
+                  <p className="mt-1 text-lg text-white/70">{city.name}</p>
+                </div>
+                <span className="mb-1 rounded-full bg-white/20 px-3 py-1 text-sm text-white backdrop-blur-sm">
+                  {city.region}
+                </span>
               </div>
-              <span className="mb-1 rounded-full bg-white/20 px-3 py-1 text-sm text-white backdrop-blur-sm">
-                {city.region}
-              </span>
+              <ShareButtons
+                url={`https://nomadkorea.com/cities/${city.slug}`}
+                title={`${city.nameKo} (${city.name}) — Nomad Korea`}
+                description={city.description}
+                imageUrl={city.image}
+              />
             </div>
           </div>
         </section>

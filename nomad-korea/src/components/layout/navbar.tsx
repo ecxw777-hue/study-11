@@ -6,9 +6,9 @@ import { createClient } from "@/lib/supabase/server";
 
 export async function Navbar() {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = supabase
+    ? (await supabase.auth.getUser()).data.user
+    : null;
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
